@@ -47,13 +47,35 @@
     </header>
 
     <main>
-      <!-- DO YOUR PART INSIDE HERE. CREATE A DIV -->
-      <h1>FLEET</h1>
+      <!-- Cassio's code -->
+       <div class="container my-5">
+          <div class="row mb-4">
+            <div class="col-md-6">
+              <h2 class="text-brand">Available Cars</h2>
+            </div>
+            <!-- Here are the filters and controls -->
+             <div class="col-md-6 d-flex justify-content-md-end align-items-center gap-2">
+                <select id="brandFilter" class="form-select w-auto">
+                  <option value="all">All Brands</option>
+                  <option value="Ford">Ford</option>
+                  <option value="Volkswagen">Volkswagen</option>
+                  <option value="Toyota">Toyota</option>
+                </select>
+                <select id="priceSort" class="form-select w-auto">
+                  <option value="default">Sort by Price</option>
+                  <option value="low">Lowest to Highest</option>
+                  <option value="high">Highest to Lowest</option>
+                </select>
+             </div>
+          </div>
+        <!-- Container where Javascript will inject the car cards -->
+        <div id="car-container" class="row g-4"></div>
+       </div>
     </main>
 
-    <footer
-      class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-      id="footercolour"
+  <footer
+      class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-4 border-top"
+      id="footer-bg-colour"
     >
       <div class="col-md-4 d-flex align-items-center">
         <span class="mb-3 mb-md-0 pagecolour">© 2026 Car Rental</span>
@@ -64,5 +86,9 @@
       integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Javascript created for the sort/price -->
+    <script src="../js/fleet.js"></script>
+
   </body>
 </html>
