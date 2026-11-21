@@ -9,7 +9,7 @@
     "status": "rented",
     "rentedDate": "2026-11-14",
     "returnDate": "2026-11-21",
-    "image": "assets/images/toyota-corolla.jpg",
+    "image": "toyota-corolla.jpg",
     "imageAlt": "Silver Toyota Corolla Hybrid hatchback parked on a city street",
     "featured": true
   },
@@ -23,7 +23,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/volkswagen-golf.jpg",
+    "image": "volkswagen-golf.jpg",
     "imageAlt": "Blue Volkswagen Golf hatchback viewed from the front",
     "featured": false
   },
@@ -37,7 +37,7 @@
     "status": "rented",
     "rentedDate": "2026-11-17",
     "returnDate": "2026-11-20",
-    "image": "assets/images/ford-fiesta.jpg",
+    "image": "ford-fiesta.jpg",
     "imageAlt": "Red Ford Fiesta small hatchback on a residential road",
     "featured": false
   },
@@ -51,7 +51,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/toyota-chr.jpg",
+    "image": "toyota-chr.jpg",
     "imageAlt": "White Toyota C-HR compact SUV with a black roof",
     "featured": true
   },
@@ -65,7 +65,7 @@
     "status": "rented",
     "rentedDate": "2026-11-10",
     "returnDate": "2026-11-24",
-    "image": "assets/images/hyundai-tucson.jpg",
+    "image": "hyundai-tucson.jpg",
     "imageAlt": "Dark grey Hyundai Tucson SUV on a countryside road",
     "featured": false
   },
@@ -79,7 +79,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/kia-sportage.jpg",
+    "image": "kia-sportage.jpg",
     "imageAlt": "Green Kia Sportage SUV parked beside a lake",
     "featured": false
   },
@@ -93,7 +93,7 @@
     "status": "rented",
     "rentedDate": "2026-11-18",
     "returnDate": "2026-11-22",
-    "image": "assets/images/bmw-3-series.jpg",
+    "image": "bmw-3-series.jpg",
     "imageAlt": "Black BMW 3 Series saloon in front of a modern office building",
     "featured": true
   },
@@ -107,7 +107,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/mercedes-a-class.jpg",
+    "image": "mercedes-a-class.jpg",
     "imageAlt": "White Mercedes-Benz A-Class hatchback on a city street at night",
     "featured": false
   },
@@ -121,7 +121,7 @@
     "status": "rented",
     "rentedDate": "2026-11-12",
     "returnDate": "2026-11-26",
-    "image": "assets/images/audi-q5.jpg",
+    "image": "audi-q5.jpg",
     "imageAlt": "Grey Audi Q5 luxury SUV driving on a mountain road",
     "featured": true
   },
@@ -135,7 +135,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/tesla-model-3.jpg",
+    "image": "tesla-model-3.jpg",
     "imageAlt": "Red Tesla Model 3 electric saloon at a charging station",
     "featured": true
   },
@@ -149,7 +149,7 @@
     "status": "rented",
     "rentedDate": "2026-11-16",
     "returnDate": "2026-11-23",
-    "image": "assets/images/volkswagen-id4.jpg",
+    "image": "volkswagen-id4.jpg",
     "imageAlt": "Light blue Volkswagen ID.4 electric SUV in a car park",
     "featured": false
   },
@@ -163,7 +163,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/nissan-leaf.jpg",
+    "image": "nissan-leaf.jpg",
     "imageAlt": "White Nissan Leaf electric hatchback plugged into a charger",
     "featured": false
   },
@@ -177,7 +177,7 @@
     "status": "rented",
     "rentedDate": "2026-11-19",
     "returnDate": "2026-11-21",
-    "image": "assets/images/ford-mustang.jpg",
+    "image": "ford-mustang.jpg",
     "imageAlt": "Yellow Ford Mustang convertible with the roof down on a coastal road",
     "featured": true
   },
@@ -191,7 +191,7 @@
     "status": "available",
     "rentedDate": null,
     "returnDate": null,
-    "image": "assets/images/ford-transit-custom.jpg",
+    "image": "ford-transit-custom.jpg",
     "imageAlt": "White Ford Transit Custom van with side door open",
     "featured": false
   },
@@ -205,7 +205,7 @@
     "status": "rented",
     "rentedDate": "2026-11-15",
     "returnDate": "2026-11-29",
-    "image": "assets/images/volkswagen-multivan.jpg",
+    "image": "volkswagen-multivan.jpg",
     "imageAlt": "Silver Volkswagen Multivan people carrier parked outside a hotel",
     "featured": false
   }
