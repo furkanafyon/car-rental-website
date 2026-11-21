@@ -27,3 +27,50 @@ main {
 .text-brand {
   color: #085234;
 }
+
+/* ------------------ contact us page ----------------------- */
+/* variables */
+
+:root {
+  --form-bg: #f7faef;
+  --radius: 10px;
+}
+
+/* form styles*/
+
+#form {
+  width: min(100%, 600px);
+  background-color: var(--form-bg);
+  border-radius: var(--radius);
+  border: 1px solid #085234;
+  padding: 2rem;
+}
+
+#form .error {
+  color: #d6403a;
+}
+
+#form input,
+select,
+textarea {
+  background-color: #fff;
+}
+
+/* ----- Button styles ----- */
+.btn {
+  display: inline-block;
+  background: #0b6f47;
+  color: #f5c518;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: #085234;
+  color: #f5c518;
+}
