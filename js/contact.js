@@ -10,10 +10,133 @@ const messageError = document.getElementById("message-error");
 const messageInput = document.getElementById("messageInput");
 const form = document.getElementById("form");
 const successAlert = document.getElementById("success-alert");
+const faqAccordion = document.getElementById("faq-accordion");
+
+
+// FAQs
+const faqs = [
+  // Booking & Eligibility
+  {
+    question: "What do I need to rent a car?",
+    answer: "A valid driver's licence, a credit or debit card in the driver's name, and photo ID (passport or national ID)."
+  },
+  {
+    question: "What is the minimum age to rent?",
+    answer: "Usually 21 to 25, depending on the vehicle category. Drivers under 25 may pay a young driver surcharge."
+  },
+  {
+    question: "Can I book for someone else?",
+    answer: "Yes, but the main driver must be present at pick-up with their own licence and payment card."
+  },
+  {
+    question: "Can I add an additional driver?",
+    answer: "Yes. Additional drivers must be present at pick-up with a valid licence, and a daily fee may apply."
+  },
+  {
+    question: "Do I need an international driving permit?",
+    answer: "Only if your licence isn't in English or the Roman alphabet, or if local rules require it. Check before you travel."
+  },
+
+  // Payments & Pricing
+  {
+    question: "What payment methods do you accept?",
+    answer: "Major credit and debit cards. Cash is not accepted for the deposit."
+  },
+  {
+    question: "What is the security deposit and when do I get it back?",
+    answer: "A hold is placed on your card at pick-up. It's released within a few working days of returning the car in the agreed condition."
+  },
+  {
+    question: "Are there any hidden fees?",
+    answer: "No. The total price shown at booking includes all mandatory charges. Optional extras like GPS, child seats, or additional drivers are listed separately."
+  },
+  {
+    question: "Do you charge for fuel?",
+    answer: "It depends on the fuel policy. With \"full to full,\" you pick up with a full tank and return it full."
+  },
+
+  // Insurance & Protection
+  {
+    question: "What insurance is included?",
+    answer: "Basic cover (such as collision damage waiver and theft protection) is usually included, often with an excess."
+  },
+  {
+    question: "What is the excess (deductible)?",
+    answer: "The maximum amount you pay if the car is damaged or stolen. You can reduce or remove it with optional extra cover."
+  },
+  {
+    question: "What happens if I have an accident or breakdown?",
+    answer: "Contact our 24/7 helpline immediately, found on your rental agreement. Don't arrange repairs yourself without our approval."
+  },
+
+  // Pick-up & Return
+  {
+    question: "Where can I pick up and return the car?",
+    answer: "At any of our listed branches or airport desks. Delivery and collection may be available for an extra fee."
+  },
+  {
+    question: "Can I return the car to a different location?",
+    answer: "Yes, subject to availability. A one-way fee may apply."
+  },
+  {
+    question: "What if I'm late returning the car?",
+    answer: "There's usually a short grace period. After that, extra hourly or daily charges apply, so please contact us if you're running late."
+  },
+  {
+    question: "What if I need to return the car outside opening hours?",
+    answer: "Out-of-hours return may be available at selected locations. Check your booking confirmation."
+  },
+
+  // Using the Car
+  {
+    question: "Is there a mileage limit?",
+    answer: "Many rentals include unlimited mileage. Otherwise the daily limit and excess charge per extra km or mile are shown at booking."
+  },
+  {
+    question: "Can I take the car abroad?",
+    answer: "Cross-border travel is allowed in some cases, but you must tell us in advance and may need extra cover or documents."
+  },
+  {
+    question: "Can I smoke in the car?",
+    answer: "No. A cleaning fee applies if the car is returned smelling of smoke."
+  },
+  {
+    question: "Are pets allowed?",
+    answer: "Usually yes, if they're in a carrier or secured safely. A cleaning fee may apply for excess hair or mess."
+  },
+  {
+    question: "Do you provide child seats?",
+    answer: "Yes, available as an optional extra. Please reserve them when booking."
+  },
+
+  // Changes & Cancellations
+  {
+    question: "Can I change or cancel my booking?",
+    answer: "Yes, through your account or by contacting us. Free cancellation is usually available up to 24 to 48 hours before pick-up."
+  },
+  {
+    question: "What happens if I don't show up?",
+    answer: "No-shows may be charged in full or in part, depending on your rate type."
+  },
+  {
+    question: "What if the car I booked isn't available?",
+    answer: "You'll be offered a similar or better vehicle in the same category."
+  },
+
+  // Fines & Other Charges
+  {
+    question: "Who pays for parking fines and speeding tickets?",
+    answer: "You do. We'll pass your details to the authorities and may charge an admin fee."
+  },
+  {
+    question: "How do tolls work?",
+    answer: "You're responsible for tolls. Some cars have electronic toll tags, and the charges are added to your final bill."
+  }
+];
+
+
 
 // validation helper functions
-
-
 
 //function for email validation
 function isValidEmailFormat(em) {
@@ -57,23 +180,22 @@ function isValidIrishPhoneNumber(raw) {
   return mobile.test(national) || landline.test(national);
 }
 
-
 function isValidQuerySelection(query) {
-  return ["1", "2", "3", "4", "5" , "6" , "7"].includes(query);
+  return ["1", "2", "3", "4", "5", "6", "7"].includes(query);
 }
 
 // validating email
 
 function validateEmail(val) {
-  if (!isWithinRange(val,6,254)) {
-    emailError.innerHTML = "Email address must be between 6 and 254 characters long";
+  if (!isWithinRange(val, 6, 254)) {
+    emailError.innerHTML =
+      "Email address must be between 6 and 254 characters long";
     return false;
-  }
-  else if(!isValidEmailFormat){
-    emailError.innerHTML = "Email address must have the format name@example.com";
+  } else if (!isValidEmailFormat) {
+    emailError.innerHTML =
+      "Email address must have the format name@example.com";
     return false;
-  }
-  else {
+  } else {
     emailError.innerHTML = "";
     return true;
   }
@@ -96,18 +218,17 @@ function validateName(val) {
 // validating phone number
 
 function validatePhoneNumber(num) {
-    var phone = num.trim()
+  var phone = num.trim();
 
-   
-    if(!isValidIrishPhoneNumber(phone)){
-         // display error message
-        phoneError.innerHTML = "Please enter a valid Irish phone number, like +353 87 123 4567";
-        return false;
-    }
-    else{
+  if (!isValidIrishPhoneNumber(phone)) {
+    // display error message
+    phoneError.innerHTML =
+      "Please enter a valid Irish phone number, like +353 87 123 4567";
+    return false;
+  } else {
     // hide error message
-        phoneError.innerHTML = "";
-        return true;
+    phoneError.innerHTML = "";
+    return true;
   }
 }
 
@@ -210,3 +331,42 @@ form.addEventListener("submit", function (e) {
     resetFields();
   }
 });
+
+
+function insertFAQintoAccordion(faq){
+  return `<details class="accordion-item mb-5" name="faq-accordion" open>
+              <summary class="accordion-header">
+                ${faq.question}
+                <svg
+                  class="accordion-icon"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="m2 5 6 6 6-6" />
+                </svg>
+              </summary>
+              <div class="accordion-body">
+                ${faq.answer}
+              </div>
+            </details>
+`
+}
+
+
+// render the FAQs in the 'faqs' list
+// faqAccordion.innerHTML=  
+
+result="";
+
+for(let i = 0;i < 12;i++){
+  faq = faqs[i];
+  result += insertFAQintoAccordion(faq)
+}
+
+faqAccordion.innerHTML = result;
+
+

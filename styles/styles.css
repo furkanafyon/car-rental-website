@@ -74,3 +74,14 @@ textarea {
   background-color: #085234;
   color: #f5c518;
 }
+
+
+#faq-accordion .accordion-header,
+#faq-accordion .accordion-body{
+  background-color: var(--form-bg);
+}
+
+#faq-accordion .accordion-header:hover{
+  background-color: #0b6f47;
+  color: #f5c518;
+}
