@@ -76,12 +76,21 @@ textarea {
 }
 
 
-#faq-accordion .accordion-header,
-#faq-accordion .accordion-body{
-  background-color: var(--form-bg);
+
+
+#faq-accordion {
+  --bs-accordion-btn-bg: #f7faef;
+  --bs-accordion-btn-color: #085234;
+  --bs-accordion-active-bg: var(--form-bg);
+  --bs-accordion-active-color: #000;
+  --bs-accordion-bg: #f7faef;
 }
 
-#faq-accordion .accordion-header:hover{
+#faq-accordion .accordion-button:hover {
   background-color: #0b6f47;
   color: #f5c518;
+}
+
+#faq-accordion .accordion-body {
+  background-color: #F3F3F3;
 }
