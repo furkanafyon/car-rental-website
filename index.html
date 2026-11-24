@@ -12,6 +12,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./styles/styles.css" />
+    <script src="./js/carousel.js" defer></script>
   </head>
   <body>
     <header>
@@ -40,7 +41,9 @@
               <a class="nav-link pagecolour" href="./pages/cars.html">Cars</a>
               <a class="nav-link pagecolour" href="./pages/book.html">Book</a>
               <a class="nav-link pagecolour" href="./pages/about.html">About</a>
-              <a class="nav-link pagecolour" href="./pages/contact.html">Contact Us</a>
+              <a class="nav-link pagecolour" href="./pages/contact.html"
+                >Contact Us</a
+              >
             </div>
           </div>
         </div>
@@ -48,7 +51,23 @@
     </header>
 
     <main>
-      <h1>Car Rental</h1>
+      <section class="container text-center py-5">
+        <h1 class="display-4 fw-bold text-brand">Welcome to Car Rental</h1>
+        <p class="lead">
+          The best way to rent a reliable car. Great prices and no hidden fees.
+        </p>
+        <hr class="my-4" />
+        <p>Choose from our full range of cars and book online in minutes.</p>
+        <a class="btn btn-lg" href="./pages/cars.html">Browse Cars</a>
+      </section>
+      <div id="carousel">
+        <div id="carousel_btn_ctn"></div>
+      </div>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu"
+        crossorigin="anonymous"
+      ></script>
     </main>
 
     <footer
