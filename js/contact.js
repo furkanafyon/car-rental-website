@@ -333,26 +333,30 @@ form.addEventListener("submit", function (e) {
 });
 
 
-function insertFAQintoAccordion(faq){
-  return `<details class="accordion-item mb-5" name="faq-accordion" open>
-              <summary class="accordion-header">
-                ${faq.question}
-                <svg
-                  class="accordion-icon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+function insertFAQintoAccordion(faq,i){
+  return ` <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse${i}"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
                 >
-                  <path d="m2 5 6 6 6-6" />
-                </svg>
-              </summary>
-              <div class="accordion-body">
-                ${faq.answer}
+                  ${faq.question}
+                </button>
+              </h2>
+              <div
+                id="collapse${i}"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-accordion"
+              >
+                <div class="accordion-body">
+                 ${faq.answer}
+                </div>
               </div>
-            </details>
+            </div>
 `
 }
 
@@ -364,7 +368,7 @@ result="";
 
 for(let i = 0;i < 12;i++){
   faq = faqs[i];
-  result += insertFAQintoAccordion(faq)
+  result += insertFAQintoAccordion(faq,i)
 }
 
 faqAccordion.innerHTML = result;
