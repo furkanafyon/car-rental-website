@@ -12,6 +12,10 @@ const form = document.getElementById("form");
 const successAlert = document.getElementById("success-alert");
 const faqAccordion = document.getElementById("faq-accordion");
 const faqsInput = document.getElementById("faqSearchInput");
+const submitModal = document.getElementById("submit-confirmation-modal");
+const myModal = new bootstrap.Modal(submitModal);
+const submitModalBody = document.getElementById("submit-modal-body");
+const modalConfirmBtn = document.getElementById("modal-confirm-btn");
 
 
 // FAQs
@@ -134,6 +138,103 @@ const faqs = [
     answer: "You're responsible for tolls. Some cars have electronic toll tags, and the charges are added to your final bill."
   }
 ];
+
+// utility functions
+
+
+function getInputName(value) {
+    switch (value) {
+        case "1":
+            return "New Booking Enquiry";
+
+        case "2":
+            return "Change or Cancel a Booking";
+
+        case "3":
+            return "Current Rental Support / Breakdown";
+
+        case "4":
+            return "Billing or Payment";
+
+        case "5":
+            return "Damage or Accident Report";
+
+        case "6":
+            return "Feedback or Complaint";
+
+        case "7":
+            return "Other";
+
+        default:
+            return "Choose one";
+    }
+}
+
+
+// rendering functions
+
+// wrap faq into an html element (accordion-item) 
+
+function insertFAQintoAccordion(faq,i){
+  return ` <div class="accordion-item mb-3">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse${i}"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  ${faq.question}
+                </button>
+              </h2>
+              <div
+                id="collapse${i}"
+                class="accordion-collapse collapse"
+                data-bs-parent="#faq-accordion"
+              >
+                <div class="accordion-body">
+                 ${faq.answer}
+                </div>
+              </div>
+            </div>
+`
+}
+
+
+// adds the FAQs to the DOM 
+function renderFAQs(questions){
+
+  result = ""
+  faqAccordion.innerHTML = ""
+
+  // iterates through the list of FAQs
+  for(let i = 0;i < questions.length;i++){
+    faq = questions[i];
+    // wrap the faq into an html element and add it to result
+    result += insertFAQintoAccordion(faq,i)
+  }
+  faqAccordion.innerHTML = result;
+}
+
+// inserts user input data into the submission confirmation modal
+function populateSubmitModal(name,email,phone,query,message){
+  result = ""
+  submitModalBody.innerHTML = ""
+
+  htmlCode = ` <ul class="submit-modal-list">
+                <li>Name: ${name}</li>
+                <li>Email: ${email}</li>
+                <li>Phone: ${phone}</li>
+                <li>Query: ${query}</li>
+                <li>Message: ${message}</li>
+              </ul>`;
+
+  submitModalBody.innerHTML = htmlCode
+}
+
+
 
 
 
@@ -302,6 +403,15 @@ querySelect.addEventListener("change", function (e) {
   validateQuerySelect(val);
 });
 
+
+// closes the modal when "Confirm" button clicked
+modalConfirmBtn.addEventListener("click",function(e){
+  // close the modal
+  myModal.hide();
+
+  submitForm();
+})
+
 // clear all fields after submission
 function resetFields() {
   nameInput.value = "";
@@ -312,11 +422,24 @@ function resetFields() {
 }
 
 
+function submitForm(){
+  // show submission success alert for 5 seconds
+    showAlert(successAlert, 5);
+
+    // clear all fields after submission
+    resetFields();
+}
+
+
 
 // called when the 'submit' button is clicked
 form.addEventListener("submit", function (e) {
   // prevent page reload
   e.preventDefault();
+
+  
+
+
 
   // getting validation status for all input fields
   var nameValid = validateName(nameInput.value);
@@ -325,19 +448,21 @@ form.addEventListener("submit", function (e) {
   var messageValid = validateMessage(messageInput.value);
   var queryValid = validateQuerySelect(querySelect.value);
 
-  // form will only be submitted if all input fields are valid
+  // form can only be submitted if all input fields are valid
   if (nameValid && emailValid && phoneValid && messageValid && queryValid) {
-    // show submission success alert for 5 seconds
-    showAlert(successAlert, 5);
 
-    // clear all fields after submission
-    resetFields();
+    // insert user input data into the confirmation modal
+    populateSubmitModal(nameInput.value,emailInput.value,phoneInput.value,getInputName(querySelect.value),messageInput.value)
+    // display the confirmation modal
+     myModal.show();
+
   }
 });
 
 // when user seraches for an FAQ
 faqsInput.addEventListener("input",function(e){
   search = e.target.value;
+
 
   // filter faqs that have the search term as a substring
   result = faqs.filter((faq) => faq.question.toLowerCase().includes(search.toLowerCase()));
@@ -347,50 +472,11 @@ faqsInput.addEventListener("input",function(e){
 )
 
 
-function insertFAQintoAccordion(faq,i){
-  return ` <div class="accordion-item mb-3">
-              <h2 class="accordion-header">
-                <button
-                  class="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapse${i}"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  ${faq.question}
-                </button>
-              </h2>
-              <div
-                id="collapse${i}"
-                class="accordion-collapse collapse"
-                data-bs-parent="#faq-accordion"
-              >
-                <div class="accordion-body">
-                 ${faq.answer}
-                </div>
-              </div>
-            </div>
-`
-}
 
 
-// inserts the FAQs into the HTML 
-function renderFAQs(questions){
-
-  result = ""
-  faqAccordion.innerHTML = ""
-
-  // iterates through the list of FAQs
-  for(let i = 0;i < questions.length;i++){
-    faq = questions[i];
-    // wrap the faq into an html element and add it to result
-    result += insertFAQintoAccordion(faq,i)
-  }
-  faqAccordion.innerHTML = result;
-}
-
-
+// inserts all FAQs into the DOM
 renderFAQs(faqs)
+
+
 
 
