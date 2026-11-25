@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -67,9 +67,17 @@
 
             <!-- The form -->
             <form id="form" class="p-5">
+              <!-- name input -->
               <div class="formField">
                 <label for="nameInput" class="form-label fw-bold">Name *</label>
-                <input type="text" class="form-control mb-2" id="nameInput" />
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  id="nameInput"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
                 <p class="error" id="name-error"></p>
               </div>
               <!-- email input -->
@@ -83,6 +91,9 @@
                   class="form-control mb-2"
                   id="emailInput"
                   placeholder="name@example.com"
+                  minlength="6"
+                  maxlength="254"
+                  required
                 />
                 <p class="error" id="email-error"></p>
               </div>
@@ -93,10 +104,11 @@
                   >Phone *</label
                 >
                 <input
-                  type="text"
+                  type="tel"
                   class="form-control mb-2"
                   id="phoneInput"
                   placeholder="+353 87 123 4567"
+                  required
                 />
                 <p class="error" id="phone-error"></p>
               </div>
@@ -130,6 +142,9 @@
                   class="form-control mb-2"
                   id="messageInput"
                   rows="3"
+                  minlength="10"
+                  maxlength="2000"
+                  required
                 ></textarea>
                 <p class="error" id="message-error"></p>
               </div>
@@ -155,10 +170,14 @@
 
           <!-- faqs container -->
 
-          <div
-            class="accordion accordion-flush accordion-gap"
-            id="faq-accordion"
-          ></div>
+          <div class="faqs-container">
+            <input type="text" placeholder="Search" maxlength="500" class="mb-5" id="faqSearchInput">
+            <div
+              class="accordion accordion-flush accordion-gap"
+              id="faq-accordion"
+            ></div>
+          </div>
+
           <!-- <div
             class="accordion accordion-flush accordion-gap"
             id="faq-accordion"
