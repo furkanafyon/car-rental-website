@@ -11,6 +11,7 @@ const messageInput = document.getElementById("messageInput");
 const form = document.getElementById("form");
 const successAlert = document.getElementById("success-alert");
 const faqAccordion = document.getElementById("faq-accordion");
+const faqsInput = document.getElementById("faqSearchInput");
 
 
 // FAQs
@@ -310,6 +311,8 @@ function resetFields() {
   messageInput.value = "";
 }
 
+
+
 // called when the 'submit' button is clicked
 form.addEventListener("submit", function (e) {
   // prevent page reload
@@ -331,6 +334,17 @@ form.addEventListener("submit", function (e) {
     resetFields();
   }
 });
+
+// when user seraches for an FAQ
+faqsInput.addEventListener("input",function(e){
+  search = e.target.value;
+
+  // filter faqs that have the search term as a substring
+  result = faqs.filter((faq) => faq.question.toLowerCase().includes(search.toLowerCase()));
+
+  renderFAQs(result)
+}
+)
 
 
 function insertFAQintoAccordion(faq,i){
@@ -361,16 +375,22 @@ function insertFAQintoAccordion(faq,i){
 }
 
 
-// render the FAQs in the 'faqs' list
-// faqAccordion.innerHTML=  
+// inserts the FAQs into the HTML 
+function renderFAQs(questions){
 
-result="";
+  result = ""
+  faqAccordion.innerHTML = ""
 
-for(let i = 0;i < 12;i++){
-  faq = faqs[i];
-  result += insertFAQintoAccordion(faq,i)
+  // iterates through the list of FAQs
+  for(let i = 0;i < questions.length;i++){
+    faq = questions[i];
+    // wrap the faq into an html element and add it to result
+    result += insertFAQintoAccordion(faq,i)
+  }
+  faqAccordion.innerHTML = result;
 }
 
-faqAccordion.innerHTML = result;
+
+renderFAQs(faqs)
 
 

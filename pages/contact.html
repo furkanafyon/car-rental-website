@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -70,7 +70,14 @@
               <!-- name input -->
               <div class="formField">
                 <label for="nameInput" class="form-label fw-bold">Name *</label>
-                <input type="text" class="form-control mb-2" id="nameInput" minlength="2" maxlength="30" required/>
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  id="nameInput"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                />
                 <p class="error" id="name-error"></p>
               </div>
               <!-- email input -->
@@ -163,10 +170,14 @@
 
           <!-- faqs container -->
 
-          <div
-            class="accordion accordion-flush accordion-gap"
-            id="faq-accordion"
-          ></div>
+          <div class="faqs-container">
+            <input type="text" placeholder="Search" maxlength="500" class="mb-5" id="faqSearchInput">
+            <div
+              class="accordion accordion-flush accordion-gap"
+              id="faq-accordion"
+            ></div>
+          </div>
+
           <!-- <div
             class="accordion accordion-flush accordion-gap"
             id="faq-accordion"

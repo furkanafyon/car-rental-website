@@ -150,3 +150,13 @@ textarea {
 #faq-accordion .accordion-body {
   background-color: #f3f3f3;
 }
+
+#faqSearchInput{
+  border:none;
+  border-bottom: 2px solid #0b6f47;
+  padding:1rem;
+}
+
+#faqSearchInput:focus{
+  outline:none;
+}
