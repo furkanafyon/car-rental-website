@@ -134,6 +134,8 @@ textarea {
   color: #f5c518;
 }
 
+/* FAQ styles */
+
 #faq-accordion {
   --bs-accordion-btn-bg: #f7faef;
   --bs-accordion-btn-color: #085234;
@@ -159,4 +161,16 @@ textarea {
 
 #faqSearchInput:focus{
   outline:none;
+}
+
+/* Contact details styles */
+
+.contact-details-list{
+  list-style-type: none;
+  margin-left: 0;
+  padding-left:0;
+}
+
+.contact-card{
+  background-color: #f7faef;
 }
