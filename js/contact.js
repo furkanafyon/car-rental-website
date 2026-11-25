@@ -191,7 +191,7 @@ function validateEmail(val) {
     emailError.innerHTML =
       "Email address must be between 6 and 254 characters long";
     return false;
-  } else if (!isValidEmailFormat) {
+  } else if (!isValidEmailFormat(val)) {
     emailError.innerHTML =
       "Email address must have the format name@example.com";
     return false;
