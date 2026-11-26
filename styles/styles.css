@@ -116,7 +116,7 @@ textarea {
 }
 
 /* ----- Button styles ----- */
-.btn {
+.contact-btn {
   display: inline-block;
   background: #0b6f47;
   color: #f5c518;
@@ -129,7 +129,7 @@ textarea {
   font-size: 1rem;
 }
 
-.btn:hover {
+.contact-btn:hover {
   background-color: #085234;
   color: #f5c518;
 }

@@ -19,7 +19,6 @@ const modalConfirmBtn = document.getElementById("modal-confirm-btn");
 const subjectInput = document.getElementById("subjectInput");
 const subjectError = document.getElementById("subject-error");
 const subjectField = document.getElementById("subject-form-field");
-
 const bookingRefInput = document.getElementById("bookingRefInput");
 const bookingRefError = document.getElementById("bookingRef-error");
 const bookingRefField = document.getElementById("bookingRef-form-field");
@@ -27,7 +26,6 @@ const bookingRefField = document.getElementById("bookingRef-form-field");
 
 // FAQs
 const faqs = [
-  // Booking & Eligibility
   {
     question: "What do I need to rent a car?",
     answer: "A valid driver's licence, a credit or debit card in the driver's name, and photo ID (passport or national ID)."
@@ -180,8 +178,7 @@ function getInputName(value) {
 
 // rendering functions
 
-// wrap faq into an html element (accordion-item) 
-
+// wraps FAQ into an html element (accordion-item) 
 function insertFAQintoAccordion(faq,i){
   return ` <div class="accordion-item mb-3">
               <h2 class="accordion-header">
@@ -401,6 +398,8 @@ function showAlert(alert, timeout) {
   }, timeout * 1000);
 }
 
+// adding event listeners
+
 //  email validation
 emailInput.addEventListener("change", function (e) {
   val = e.target.value;
@@ -443,18 +442,19 @@ querySelect.addEventListener("change", function (e) {
 
   // hide the 'Subject' input field
   subjectField.classList.add("d-none");
+  // hide the 'Booking Ref' input field
   bookingRefField.classList.add("d-none")
 
 
   if(!validateQuerySelect(val)) return;
 
-  // display the Booking Ref Input field
+  
    if(val >= "1" && val <= "6" ){
-    console.log("1..6 selected")
+    // show the Booking Ref Input field
     bookingRefField.classList.remove("d-none");
   }
   else if(val == "7"){
-    console.log("7 selected")
+    // show the Subject Input field
     subjectField.classList.remove("d-none");
   }
   
@@ -503,16 +503,13 @@ form.addEventListener("submit", function (e) {
   // prevent page reload
   e.preventDefault();
 
-  
-
-
-
   // getting validation status for all input fields
   var nameValid = validateName(nameInput.value);
   var emailValid = validateEmail(emailInput.value);
   var phoneValid = validatePhoneNumber(phoneInput.value);
   var messageValid = validateMessage(messageInput.value);
   var queryValid = validateQuerySelect(querySelect.value);
+
   var inputName = getInputName(querySelect.value)
 
   // form can only be submitted if all input fields are valid
@@ -538,16 +535,11 @@ form.addEventListener("submit", function (e) {
 // when user seraches for an FAQ
 faqsInput.addEventListener("input",function(e){
   search = e.target.value;
-
-
   // filter faqs that have the search term as a substring
   result = faqs.filter((faq) => faq.question.toLowerCase().includes(search.toLowerCase()));
-
   renderFAQs(result)
 }
 )
-
-
 
 
 // inserts all FAQs into the DOM
