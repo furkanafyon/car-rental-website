@@ -132,7 +132,18 @@
                 <p class="error" id="query-error"></p>
               </div>
 
-            
+             <!-- Booking Num -->
+              <div class="formField d-none" id="bookingRef-form-field">
+                <label for="bookingRefInput" class="form-label fw-bold">Booking reference*</label>
+                <input
+                  type="text"
+                  class="form-control mb-2"
+                  id="bookingRefInput"
+                  minlength="10"
+                  maxlength="10"
+                />
+                <p class="error" id="bookingRef-error"></p>
+              </div>
 
               <!-- Subject -->
               <div class="formField d-none" id="subject-form-field">
@@ -143,7 +154,6 @@
                   id="subjectInput"
                   minlength="2"
                   maxlength="100"
-                  required
                 />
                 <p class="error" id="subject-error"></p>
               </div>
