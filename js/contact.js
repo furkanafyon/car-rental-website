@@ -16,6 +16,13 @@ const submitModal = document.getElementById("submit-confirmation-modal");
 const myModal = new bootstrap.Modal(submitModal);
 const submitModalBody = document.getElementById("submit-modal-body");
 const modalConfirmBtn = document.getElementById("modal-confirm-btn");
+const subjectInput = document.getElementById("subjectInput");
+const subjectError = document.getElementById("subject-error");
+const subjectField = document.getElementById("subject-form-field");
+
+const bookingRefInput = document.getElementById("bookingRefInput");
+const bookingRefError = document.getElementById("bookingRef-error");
+const bookingRefField = document.getElementById("bookingRef-form-field");
 
 
 // FAQs
@@ -219,7 +226,7 @@ function renderFAQs(questions){
 }
 
 // inserts user input data into the submission confirmation modal
-function populateSubmitModal(name,email,phone,query,message){
+function populateSubmitModal(name,email,phone,query,message,subject,bookingRef){
   result = ""
   submitModalBody.innerHTML = ""
 
@@ -228,6 +235,8 @@ function populateSubmitModal(name,email,phone,query,message){
                 <li>Email: ${email}</li>
                 <li>Phone: ${phone}</li>
                 <li>Query: ${query}</li>
+                 ${subject ? `<li>Subject: ${subject}</li>` : ""}
+                 ${bookingRef ? `<li>Booking Ref: ${bookingRef}</li>` : ""}
                 <li>Message: ${message}</li>
               </ul>`;
 
@@ -285,6 +294,7 @@ function isValidIrishPhoneNumber(raw) {
 function isValidQuerySelection(query) {
   return ["1", "2", "3", "4", "5", "6", "7"].includes(query);
 }
+
 
 // validating email
 
@@ -359,6 +369,29 @@ function validateQuerySelect(query) {
   }
 }
 
+
+function validateSubject(query) {
+  if (!isWithinRange(query,2,100)) {
+    subjectError.innerHTML = "Subject must be between 2 and 100 characters long";
+    return false;
+  } else {
+    subjectError.innerHTML = "";
+    return true;
+  }
+}
+
+function validateBookingRef(ref) {
+  if (ref.length != 10) {
+    bookingRefError.innerHTML = "Booking Reference must be 10 characters long";
+    return false;
+  } else {
+    bookingRefError.innerHTML = "";
+    return true;
+  }
+}
+
+
+
 // displays alerts for 'timeout' seconds
 function showAlert(alert, timeout) {
   alert.classList.remove("d-none");
@@ -396,12 +429,43 @@ messageInput.addEventListener("change", function (e) {
   validateMessage(val);
 });
 
-// message validation
+// booking ref validation
+bookingRefInput.addEventListener("change", function (e) {
+  val = e.target.value;
+
+  validateBookingRef(val);
+});
+
+
+// query type validation
 querySelect.addEventListener("change", function (e) {
   val = e.target.value;
 
-  validateQuerySelect(val);
+  // hide the 'Subject' input field
+  subjectField.classList.add("d-none");
+  bookingRefField.classList.add("d-none")
+
+
+  if(!validateQuerySelect(val)) return;
+
+  // display the Booking Ref Input field
+   if(val >= "1" && val <= "6" ){
+    console.log("1..6 selected")
+    bookingRefField.classList.remove("d-none");
+  }
+  else if(val == "7"){
+    console.log("7 selected")
+    subjectField.classList.remove("d-none");
+  }
+  
+
 });
+
+subjectInput.addEventListener("change",function(e){
+  val = e.target.value;
+
+  validateSubject(val)
+})
 
 
 // closes the modal when "Confirm" button clicked
@@ -419,6 +483,8 @@ function resetFields() {
   phoneInput.value = "";
   querySelect.value = "0";
   messageInput.value = "";
+  subjectInput.value = ""
+  bookingRefInput.value = ""
 }
 
 
@@ -447,12 +513,22 @@ form.addEventListener("submit", function (e) {
   var phoneValid = validatePhoneNumber(phoneInput.value);
   var messageValid = validateMessage(messageInput.value);
   var queryValid = validateQuerySelect(querySelect.value);
+  var inputName = getInputName(querySelect.value)
 
   // form can only be submitted if all input fields are valid
   if (nameValid && emailValid && phoneValid && messageValid && queryValid) {
 
+    // 'Subject' input field must be valid when the 'Other' option is selected
+    if(inputName == "Other" && !validateSubject(subjectInput.value)) return;
+
+    if((querySelect.value >= "1" && querySelect.value <= "6") && !validateBookingRef(bookingRefInput.value)) return;
+
+
     // insert user input data into the confirmation modal
-    populateSubmitModal(nameInput.value,emailInput.value,phoneInput.value,getInputName(querySelect.value),messageInput.value)
+    populateSubmitModal(nameInput.value,emailInput.value,phoneInput.value,getInputName(querySelect.value),messageInput.value, 
+                        inputName == "Other" ? subjectInput.value : null,
+                        (querySelect.value >= "1" && querySelect.value <= "6") ? bookingRefInput.value : null
+                      )
     // display the confirmation modal
      myModal.show();
 
